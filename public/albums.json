@@ -1,5 +1,5 @@
 [
-  { "url": "/assets/1.jpg", "brief": "Picture 1" },
-  { "url": "/assets/2.jpg", "brief": "Picture 2" },
-  { "url": "/assets/3.jpg", "brief": "Picture 3" }
+  { "id":"1", "url": "/assets/1.jpg", "brief": "Picture 1" },
+  { "id":"2", "url": "/assets/2.jpg", "brief": "Picture 2" },
+  { "id":"3", "url": "/assets/3.jpg", "brief": "Picture 3" }
 ]
