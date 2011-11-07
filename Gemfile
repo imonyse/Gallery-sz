@@ -8,6 +8,7 @@ gem 'rails', '3.1.1'
 group :development, :test do
   gem 'sqlite3'
   gem 'foreman'
+  gem 'heroku'
 end
 
 group :production do
