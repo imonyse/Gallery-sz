@@ -1,0 +1,21 @@
+<!-- album list -->
+<table class="albums" data-bind="visible: !selectedAlbumURL()">
+  <thead><tr><th>URL</th><th>BRIEF</th></tr></thead>
+  <tbody data-bind="template: {name: 'albumsTemplate', foreach: albums}">
+</table>
+<script type="text/x-jquery-tmpl" id="albumsTemplate">
+  <tr>
+    <td><input data-bind="value:brief"/></td>
+    <td><input data-bind="value:url"/></td>
+    <td><a href='#' data-bind="click:function(){albumsModel.selectedAlbumURL(url)}">View</a></td>
+  </tr>
+</script>
+
+<input value="Add new album" type="button" data-bind="click: addAlbum, enable:albums().length < 10, visible: !selectedAlbumURL()"/>
+
+<!-- selected album -->
+<div class="viewAlbum" data-bind="template: { name: 'showAlbumTemplate', data: selectedAlbumURL}"></div>
+<script type="text/x-jquery-tmpl" id="showAlbumTemplate">
+  <img data-bind="attr: { src: $data }"/>
+</script>
+
