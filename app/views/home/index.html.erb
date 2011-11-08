@@ -1,3 +1,4 @@
+<div data-bind="visible: !selectedAlbum()">
 <p>
 This is an Ruby on Rails application demonstrating how Knockout JS can be integrated with Rails 3.1.
 </p>
@@ -7,6 +8,7 @@ You can add up to 10 different image url and text(brief label) to the index list
 <p>
 When clicking the 'View' link, it will show the image on your browser, and switch to the next image after 5 seconds.
 </p>
+</div>
 
 <!-- album list -->
 <table class="albums" data-bind="visible: !selectedAlbum()">
@@ -24,6 +26,10 @@ When clicking the 'View' link, it will show the image on your browser, and switc
 
 <input value="Add new album" type="button" data-bind="click: addAlbum, enable:albums().length < 10, visible: !selectedAlbum()"/>
 
+<p data-bind="visible: selectedAlbum()">
+  <a href='#' data-bind="click: backToIndex">Back</a>
+</p>
+
 <!-- selected album -->
 <div class="viewAlbum" data-bind="template: { name: 'showAlbumTemplate', data: selectedAlbum}"></div>
 <script type="text/x-jquery-tmpl" id="showAlbumTemplate">
@@ -31,6 +37,3 @@ When clicking the 'View' link, it will show the image on your browser, and switc
   <p data-bind="text: brief"></p>
 </script>
 
-<p data-bind="visible: selectedAlbum()">
-  <a href='#' data-bind="click: backToIndex">Back</a>
-</p>
