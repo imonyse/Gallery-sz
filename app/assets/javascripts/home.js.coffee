@@ -2,22 +2,26 @@
 # All this logic will automatically be available in application.js.
 # You can use CoffeeScript in this file: http://jashkenas.github.com/coffee-script/
 
+class AlbumsModel
+  constructor: ->
+    @albums = ko.observableArray([])
+    @selectedAlbumId = ko.observable()
+    
+  addAlbum: ->
+    @albums.push({ id:(@albums().length + 1).toString(), url: ko.observable(), brief: ko.observable() })
+    
+  backToIndex: ->
+    @selectedAlbumId(null)
+    clearTimeout("nextAlbum()")
+    
 $(document).ready ->
-  albumsModel =
-    albums: ko.observableArray([])
-    addAlbum: ->
-      @albums.push({ id:(@albums().length + 1).toString(), url: ko.observable(), brief: ko.observable() })
-    selectedAlbumId: ko.observable()
-    backToIndex: ->
-      @selectedAlbumId(null)
-      clearTimeout("nextAlbum()")
-
+  albumsModel = new AlbumsModel()
   albumsModel.selectedAlbum = ko.dependentObservable(->
     albumIdToFind = @selectedAlbumId()
     ko.utils.arrayFirst(albumsModel.albums(), (item) -> item.id == albumIdToFind)
   albumsModel)
-
   window.albumsModel = albumsModel
+  
   window.selectAlbum = (id) ->
     albumsModel.selectedAlbumId(id)
     setTimeout("nextAlbum()", 5000)
@@ -31,6 +35,7 @@ $(document).ready ->
       nextAlbumId = 1
 
     selectAlbum(nextAlbumId.toString())
+
 
   ko.applyBindings(albumsModel)
   ko.dependentObservable(->
